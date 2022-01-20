@@ -16,7 +16,6 @@ const rateLimiter = require('express-rate-limit')
 const helmet = require('helmet')
 const xss = require('xss-clean')
 const cors = require('cors')
-const bodyparser = require('body-parser')
 // routes
 const customerRouter = require('./routes/customerRoutes')
 const authRouter = require('./routes/authRoutes')
