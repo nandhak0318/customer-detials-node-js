@@ -9,6 +9,9 @@ const sequelize = new Sequelize(
     dialect: 'mysql',
     host: process.env.DB_HOST,
     port: process.env.PORT,
+    ssl: 'Amazon RDS',
+  pool: { maxConnections: 5, maxIdleTime: 30 },
+  language: 'en',
   },
 )
 
