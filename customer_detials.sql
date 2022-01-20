@@ -53,9 +53,6 @@ ALTER TABLE `tbl_customer_detials`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_id` (`user_id`),
   ADD UNIQUE KEY `user_email` (`user_email`),
-  ADD UNIQUE KEY `user_email_2` (`user_email`),
-  ADD UNIQUE KEY `user_email_3` (`user_email`),
-  ADD UNIQUE KEY `user_email_4` (`user_email`)
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
