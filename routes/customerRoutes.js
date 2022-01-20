@@ -13,6 +13,5 @@ const {
 router.get('/detials/:id', getSingleCustomer)
 router.get('/customers', getAllCustomers)
 router.get('/image/:id', getCustomerImage)
-router.post('/insert', createCustomer)
 router.delete('/delete/:id', deleteCustomer)
 module.exports = router
