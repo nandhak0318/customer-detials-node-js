@@ -5,13 +5,13 @@ const router = express.Router()
 const {
   getSingleCustomer,
   createCustomer,
-  updateCustomer,
   deleteCustomer,
   getCustomerImage,
+  getAllCustomers,
 } = require('../controllers/customerController')
 
 router.get('/detials/:id', getSingleCustomer)
-router.put('/update/:id', updateCustomer)
+router.get('/customers', getAllCustomers)
 router.get('/image/:id', getCustomerImage)
 router.post('/insert', createCustomer)
 router.delete('/delete/:id', deleteCustomer)

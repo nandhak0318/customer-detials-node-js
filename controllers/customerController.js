@@ -1,14 +1,12 @@
+const sequelize = require('../db/database')
 const Customer = require('../models/customer')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
 const crypto = require('crypto')
 const path = require('path')
-
+const fs = require('fs')
 const getAllCustomers = async (req, res) => {
   const customers = await Customer.findAll({
-    where: {
-      id: id,
-    },
     attributes: {
       exclude: ['updated_at', 'created_at', 'password', 'lastLoggedIn'],
     },
@@ -51,7 +49,6 @@ const getSingleCustomer = async (req, res) => {
   if (customer.length === 0) {
     throw new CustomError.NotFoundError(`No user with id: ${req.params.id}`)
   }
-  // checkPermissions(req.user, user._id)
   res.status(StatusCodes.OK).json({ user_detial: customer })
 }
 
@@ -91,12 +88,22 @@ const createCustomer = async (req, res) => {
     totalOrders,
     lastLoggedIn: lli,
   })
-  res.status(200).json({ user_detial: customer })
+  delete customer['password']
+  delete customer['updated_at']
+  delete customer['created_at']
+  delete customer['password']
+  delete customer['lastLoggedIn']
+  res.status(200).json({ msg: `customer created succesfully` })
 }
 
 // update user with user.save()
 const updateCustomer = async (req, res) => {
   const id = req.params.id
+  if (req.params.id != req.user.id) {
+    throw new CustomError.UnauthenticatedError(
+      `you don't have access to update this user`,
+    )
+  }
   const isExist = await Customer.findAll({
     where: {
       id: id,
@@ -120,7 +127,6 @@ const updateCustomer = async (req, res) => {
     updateJosn.totalOrders = totalOrders
   }
 
-  console.log(req.files)
   if (req.files != null && req.files.image) {
     const file = req.files.image
     if (!file.mimetype.startsWith('image')) {
@@ -165,8 +171,10 @@ const deleteCustomer = async (req, res) => {
   if (isExist.length === 0) {
     throw new CustomError.NotFoundError(`No user with id: ${req.params.id}`)
   }
+
   const customer = await Customer.destroy({ where: { id: id } })
-  res.status(200).json({ msg: `user detials updated succesfully` })
+
+  res.status(200).json({ msg: `user deleted succesfully` })
 }
 
 module.exports = {
@@ -175,4 +183,5 @@ module.exports = {
   getSingleCustomer,
   createCustomer,
   deleteCustomer,
+  getAllCustomers,
 }

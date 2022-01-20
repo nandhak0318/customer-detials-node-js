@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./scss/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="tb-bc" style="min-height: unset;">
+      <div class="tb-form-wrapper">
+        <div class="container">
+          <div class="title">Edit profile</div>
+          <div class="content">
+            <form action="#" id="changepro">
+              <div
+                class="ima"
+                style="
+                  display: grid;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div class="profile-pic">
+                  <label class="-label" for="file">
+                    <span class="glyphicon glyphicon-camera"></span>
+                    <span>Change Image</span>
+                  </label>
+                  <input
+                    id="file"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onchange="loadFile(event)"
+                  />
+                  <img src="./assets/user.jpg" id="output" width="170" />
+                </div>
+              </div>
+              <div class="user-details">
+                <div class="input-box">
+                  <span class="details">First Name</span>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="ANNANYA"
+                    name="name"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Email</span>
+                  <input
+                    type="text"
+                    id="email"
+                    placeholder="ANANYA@GMAIL.com"
+                    style="cursor: not-allowed;"
+                    disabled
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="input-box">
+                  <span class="details">Total Number Of Orders</span>
+                  <input
+                    type="text"
+                    id="tno"
+                    placeholder="0"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+              <p class="failure" id="fail" style="text-align: center;"></p>
+              <p class="success" id="sus" style="text-align: center;"></p>
+              <div class="button" id="sb">
+                <input type="submit" id="submitBtn" value="SAVE CHANGES" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"
+      integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/update.js"></script>
+  </body>
+</html>

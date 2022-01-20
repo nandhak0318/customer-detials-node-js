@@ -1,5 +1,6 @@
 const sequelize = require('../db/database')
 const Sequelize = require('sequelize')
+const bcrypt = require('bcryptjs')
 const Customer = sequelize.define(
   'tbl_customer_detials',
   {
@@ -70,5 +71,15 @@ const Customer = sequelize.define(
     createdAt: 'created_at',
   },
 )
+
+Customer.beforeCreate(async (customer, options) => {
+  try {
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(customer.password, salt)
+    customer.password = hash
+  } catch (err) {
+    throw new Error(err)
+  }
+})
 
 module.exports = Customer
