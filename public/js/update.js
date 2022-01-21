@@ -10,7 +10,7 @@ console.log(id)
 let tempName
 
 if (!Cookies.get('token')) {
-  location.href = '/auth'
+  location.href = '/auth.html'
 }
 const token = Cookies.get('token')
 console.log(token)
